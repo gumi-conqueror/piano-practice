@@ -5,3 +5,10 @@ This template should help get you started developing with Vue 3 and TypeScript i
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+
+## Development and CI
+
+Use Node.js 26.x, npm, and the Rust toolchain pinned in `rust-toolchain.toml`.
+Run `npm ci`, then `npm run tauri dev` for the desktop application.
+See [CI](docs/CI.md) for checks, platform builds, artifacts and branch protection.
+Repository contribution instructions are in [AGENTS.md](AGENTS.md).
