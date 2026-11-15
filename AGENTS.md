@@ -23,7 +23,8 @@
 - Preserve the check names `Web (required)`, `Windows x64 (required)` and `Required release checks`.
 - Build production frontend assets on every branch. Use debug native builds outside `main`. Main builds release packages for all configured desktop targets and also warms the Windows x64 debug cache.
 - Keep external Actions pinned to full commit hashes. Use read-only workflow permissions and disable persisted checkout credentials.
-- See [CI](docs/CI.md) for the platform matrix, artifact policy and local commands. Publishing releases and deploying websites are separate tasks.
+- Run `npm run test:tooling` when changing release scripts. See [CI](docs/CI.md) for build checks and [Releasing](docs/RELEASING.md) for publication.
+- Tags publish the verified Web and desktop release artifacts from a successful main build at the exact tag commit. Do not rebuild packages during publication. Cloudflare Pages deployment is disabled.
 
 ## Branch strategy
 

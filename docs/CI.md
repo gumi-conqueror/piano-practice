@@ -8,13 +8,13 @@ The build workflow checks the frontend and Rust code and packages the Tauri appl
 
 | Check | Pull requests and dev | Main |
 | --- | --- | --- |
-| Web (required) | Typecheck, production build, verified ZIP | Same |
+| Web (required) | Release tooling tests, typecheck, production build, verified ZIP | Same |
 | Windows x64 (required) | Rust checks and debug executable ZIP | Rust checks and release executable ZIP |
 | Windows x64 (debug cache) | Not run | Rust checks and debug executable ZIP |
 | Additional desktop targets | Manual `all_platforms` only, debug | Release builds |
 | Required release checks | Require every selected job to succeed | Same |
 
-The additional targets are Windows ARM64, Linux x64/ARM64, and macOS x64/ARM64. Linux produces DEB and AppImage packages; macOS produces and validates the app bundle and uploads a DMG. Windows ZIPs contain the executable and require WebView2 on the destination machine. Artifacts are unsigned CI outputs, not published releases.
+The additional targets are Windows ARM64, Linux x64/ARM64, and macOS x64/ARM64. Linux produces DEB and AppImage packages; macOS produces and validates the app bundle and uploads a DMG. Windows ZIPs contain the executable and require WebView2 on the destination machine. Each artifact includes a manifest with source identity and package checksums. Artifacts are unsigned. The [release workflow](RELEASING.md) publishes verified release artifacts when a version tag is pushed.
 
 The aggregate check fails if Web or Windows fails or is cancelled. Additional targets may be skipped only when they were not selected. The project currently has no frontend unit or UI tests, and the Rust starter has no application tests. Build checks validate compilation and packaging.
 
@@ -30,6 +30,7 @@ Run from the repository root with the platform's Tauri prerequisites installed:
 
 ```sh
 npm ci
+npm run test:tooling
 npm run typecheck
 npm run build
 cargo fmt --manifest-path src-tauri/Cargo.toml --check

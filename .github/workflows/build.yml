@@ -32,10 +32,15 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci
+      - run: npm run test:tooling
       - run: npm run typecheck
       - run: npm run build
       - name: Archive and validate the web output
-        run: bash .github/scripts/package-web.sh
+        env:
+          PIANO_BUILD_PROFILE: release
+        run: |
+          bash .github/scripts/package-web.sh
+          node scripts/release-artifacts.mjs record release/web web
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: piano-practice-web-release-${{ github.sha }}
