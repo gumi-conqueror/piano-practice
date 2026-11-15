@@ -107,6 +107,11 @@ runs:
         RELEASE_PLATFORM: ${{ inputs.platform }}
         RUST_TARGET: ${{ inputs.target }}
       run: bash .github/scripts/collect-macos.sh
+    - name: Record artifact identity and checksums
+      shell: bash
+      env:
+        RELEASE_PLATFORM: ${{ inputs.platform }}
+      run: node scripts/release-artifacts.mjs record "release/$RELEASE_PLATFORM" "$RELEASE_PLATFORM"
     - name: Upload complete platform artifacts
       uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:

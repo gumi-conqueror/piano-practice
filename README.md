@@ -12,3 +12,4 @@ Use Node.js 26.x, npm, and the Rust toolchain pinned in `rust-toolchain.toml`.
 Run `npm ci`, then `npm run tauri dev` for the desktop application.
 See [CI](docs/CI.md) for checks, platform builds, artifacts and branch protection.
 Repository contribution instructions are in [AGENTS.md](AGENTS.md).
+See [Releasing](docs/RELEASING.md) for Web and desktop releases.
